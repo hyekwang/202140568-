@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>자유게시판 / 공지사항</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- 상단 헤더 -->
+    <header class="main-header">
+      <div class="header-inner">
+        <div class="logo-area">
+          <span class="logo-title">게시판 서비스</span>
+          <span class="logo-sub">자유게시판 &amp; 공지사항</span>
+        </div>
+        <nav class="header-nav">
+          <a href="/" class="nav-link active">게시판</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 메인 컨테이너 -->
+    <main class="main-container">
+      <div class="board-card">
+        <!-- 탭 -->
+        <div class="board-tabs">
+          <button class="tab-btn active" data-board="free">자유 게시판</button>
+          <button class="tab-btn" data-board="notice">공지 사항</button>
+        </div>
+
+        <!-- 검색 / 새 글 -->
+        <div class="board-toolbar">
+          <div class="search-area">
+            <input
+              type="text"
+              id="searchKeyword"
+              placeholder="제목 검색"
+            />
+            <button id="btnSearch">검색</button>
+          </div>
+          <div class="action-area">
+            <button id="btnNewPost">새 글 작성</button>
+          </div>
+        </div>
+
+        <!-- 목록 -->
+        <div class="board-list">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 60px;">번호</th>
+                <th>제목</th>
+                <th style="width: 120px;">작성자</th>
+                <th style="width: 80px;">조회수</th>
+                <th style="width: 140px;">작성일</th>
+              </tr>
+            </thead>
+            <tbody id="postTableBody">
+              <!-- JS에서 채움 -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination" id="pagination"></div>
+
+        <!-- 중앙 영역: 모드(view/edit)에 따라 하나만 보이게 -->
+        <div class="detail-form-wrapper mode-view" id="detailFormWrapper">
+          <!-- 게시글 상세 (연람 모드에서만 보임) -->
+          <section class="detail-section">
+            <h2 class="section-title">게시글 상세</h2>
+            <div class="detail-content" id="detailView">
+              <p class="empty-text">목록에서 게시글을 선택해주세요.</p>
+            </div>
+          </section>
+
+          <!-- 게시글 입력/수정 폼 (수정/새글 모드에서만 보임) -->
+          <section class="form-section">
+            <h2 class="section-title" id="formTitle">새 글 작성</h2>
+            <form id="postForm">
+              <input type="hidden" id="postId" />
+
+              <div class="form-row">
+                <label for="postBoardType">게시판</label>
+                <select id="postBoardType">
+                  <option value="free">자유 게시판</option>
+                  <option value="notice">공지 사항</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label for="postTitle">제목</label>
+                <input type="text" id="postTitle" required />
+              </div>
+
+              <div class="form-row">
+                <label for="postAuthor">작성자</label>
+                <input type="text" id="postAuthor" required />
+              </div>
+
+              <div class="form-row">
+                <label for="postContent">내용</label>
+                <textarea id="postContent" rows="6" required></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" id="btnSavePost">저장</button>
+                <button type="button" id="btnCancelEdit" class="secondary">
+                  취소
+                </button>
+                <button type="button" id="btnDeletePost" class="danger">
+                  삭제
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script src="board.js"></script>
+  </body>
+</html>
